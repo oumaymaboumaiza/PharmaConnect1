@@ -1,0 +1,32 @@
+.app-pharmaconnect {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.stock-container {
+  margin-top: 2rem;
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+button {
+  background: #2b50aa;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
