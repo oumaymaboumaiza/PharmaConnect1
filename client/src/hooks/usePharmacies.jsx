@@ -9,9 +9,10 @@ export function usePharmacies() {
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/pharmacies`);
       if (!res.ok) throw new Error("Erreur réseau");
-      setData(await res.json());
+      const result = await res.json();
+      setData(result);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Erreur inconnue");
     } finally {
       setLoading(false);
     }
