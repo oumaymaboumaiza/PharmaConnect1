@@ -1,24 +1,25 @@
-import { useEffect, useState } from 'react';
-import pharmacyService from '../services/pharmacyService';
+import { useState, useEffect } from 'react';
 
 export function usePharmacies() {
-  const [pharmacies, setPharmacies] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Corrigé la faute de frappe (isloading → isLoading)
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const fetchPharmacies = async () => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/pharmacies`);
+      if (!res.ok) throw new Error("Erreur réseau");
+      setData(await res.json());
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchPharmacies = async () => {
-      try {
-        const data = await pharmacyService.getAll();
-        setPharmacies(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false); // Corrigé setLoading → setIsLoading
-      }
-    };
     fetchPharmacies();
   }, []);
 
-  return { data: pharmacies, isLoading, error };
+  return { data, loading, error, refetch: fetchPharmacies };
 }

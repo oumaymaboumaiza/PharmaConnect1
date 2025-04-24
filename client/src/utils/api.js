@@ -1,4 +1,14 @@
 import axios from 'axios';
+import api from './api';
+
+api.get('/pharmacies')
+  .then(response => {
+    // Traite la réponse
+  })
+  .catch(error => {
+    // Gère l'erreur
+  });
+
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001/api',

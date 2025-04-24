@@ -1,13 +1,20 @@
 // db.js
-const mysql = require('mysql2/promise');  // Version promisifiée
+const mysql = require('mysql2');
 
-const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',  // Remplacez par votre utilisateur MySQL
-  password: '',  // Mot de passe MySQL
-  database: 'pharmaconnect',
-  waitForConnections: true,
-  connectionLimit: 10
+const connection = mysql.createConnection({
+  host: 'localhost',       
+  user: 'root',            
+  password: '',           
+  database: 'pharmaconnect' 
 });
 
-module.exports = pool;
+connection.connect((err) => {
+  if (err) {
+    console.error('Erreur de connexion à la base de données:', err.message);
+    return;
+  }
+  console.log('Connecté à la base de données MySQL');
+});
+
+
+module.exports = connection;

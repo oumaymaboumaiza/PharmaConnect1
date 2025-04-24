@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './LoginPage.css';
 
-
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({
     emailOrPhone: '',
@@ -16,10 +15,10 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    
+
     try {
       await login(credentials);
-      navigate('/dashboard');
+      navigate('/pharmacies');
     } catch (err) {
       setError(err.message || 'Échec de la connexion');
     }
@@ -38,15 +37,15 @@ const LoginPage = () => {
         <h1>PharmaConnect</h1>
         <div className="taglines">
           <p>L'innovation au service des pharmacies pour une gestion sans faille</p>
-          <p className="welcome">welcome to PharmaConnect</p>
+          <p className="welcome">Welcome to PharmaConnect</p>
         </div>
       </div>
 
       <div className="login-form">
         <h2>Sign in</h2>
-        
+
         {error && <div className="error-message">{error}</div>}
-        
+
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Enter your mobile number or email ID</label>
@@ -55,7 +54,7 @@ const LoginPage = () => {
               name="emailOrPhone"
               value={credentials.emailOrPhone}
               onChange={handleChange}
-              placeholder="mobile number or email ID"
+              placeholder="Mobile number or email ID"
               required
             />
           </div>

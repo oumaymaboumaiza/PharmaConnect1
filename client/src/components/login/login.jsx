@@ -1,70 +1,62 @@
 import React from 'react';
-import './Login.css'; // Nous créerons ce fichier CSS ensuite
+import './Login.css'; 
 
 
 const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Ici vous ajouterez la logique de connexion
+    
     console.log('Formulaire soumis');
   };
-
   return (
-    <div className="login-container">
-      {/* Section Gauche - Hero */}
-      <div className="hero-section">
-        <div className="hero-content">
-          <h1>Pharmaconnect</h1>
-          <p>L'innovation au service des pharmacies pour une gestion sans faille</p>
-        </div>
+    <div className="login-wrapper">
+      <div className="left-side">
+        <h1>PharmaConnect</h1>
+        <p className="slogan">L'innovation au service des pharmacies pour une gestion sans faille</p>
       </div>
-
-      {/* Section Droite - Formulaire */}
-      <div className="form-section">
-        <div className="form-container">
-          <div className="form-header">
-            <h2>Connexion</h2>
-            <p>Accédez à votre espace professionnel</p>
-          </div>
-
+  
+      <div className="right-side">
+        <div className="login-form">
+          <h2>Sign in</h2>
+  
+          {error && <div className="error-message">{error}</div>}
+  
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="email">Email ou numéro de téléphone</label>
+              <label>Enter your mobile number or email ID</label>
               <input
                 type="text"
-                id="email"
-                placeholder="votre@email.com"
+                name="emailOrPhone"
+                value={credentials.emailOrPhone}
+                onChange={handleChange}
+                placeholder="Mobile number or email ID"
+                required
               />
             </div>
-
+  
             <div className="form-group">
-              <label htmlFor="password">Mot de passe</label>
+              <label>Enter your Password</label>
               <input
                 type="password"
-                id="password"
-                placeholder="••••••••"
+                name="password"
+                value={credentials.password}
+                onChange={handleChange}
+                placeholder="Password"
+                required
+                minLength="6"
               />
             </div>
-
+  
             <div className="form-options">
-              <a href="/forgot-password" className="forgot-password">
-                Mot de passe oublié ?
-              </a>
+              <a href="/reset-password" className="reset-link">Reset Password</a>
             </div>
-
-            <button type="submit" className="login-button">
-              SE CONNECTER
+  
+            <button type="submit" className="signin-btn">
+              Sign in
             </button>
-
-            <div className="signup-link">
-              <span>Pas encore de compte ? </span>
-              <a href="/signup">Créer un compte</a>
-            </div>
           </form>
         </div>
       </div>
     </div>
-  );
-};
-
-export default Login;
+  )};
+  
